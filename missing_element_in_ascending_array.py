@@ -8,6 +8,8 @@ def find_missing_element(lst):
     2
     >>> find_missing_element([1, 2, 0])
     3
+    >>> find_missing_element([1, 1])
+    2
     '''
     max_ = len(lst)
     # reorder list
