@@ -1,4 +1,4 @@
-from binary_tree import Node
+from utils.binary_tree import Node
 
 def serialize(rootnode):
     if rootnode is None:
