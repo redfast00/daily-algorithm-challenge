@@ -15,5 +15,13 @@ class Node(object):
         current.set_next(end)
         return result
 
+    def to_list(self):
+        result = []
+        this = self
+        while this is not None:
+            result.append(this.value)
+            this = this.next
+        return result
+
     def set_next(self, node):
         self.next = node
