@@ -10,11 +10,9 @@ def subset_sum(k, lst):
 
 def recursive_calculate(k, lst, start):
     for idx in range(start, len(lst)):
-        if lst[idx] > k:
-            continue
-        elif lst[idx] == k:
+        if lst[idx] == k:
             return [lst[idx]]
-        else:
+        elif lst[idx] < k:
             rest = recursive_calculate(k - lst[idx], lst, idx + 1)
             if rest is not None:
                 rest.append(lst[idx])
