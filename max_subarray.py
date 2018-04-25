@@ -2,7 +2,7 @@ from collections import deque
 
 
 def max_subarray(arr, k):
-    '''Returns the max of subarrays of length k in arr.
+    '''Returns the maximum of each subarray of length k in arr.
     >>> max_subarray([10, 5, 2, 7, 8, 7], 3)
     [10, 7, 8, 8]
     '''

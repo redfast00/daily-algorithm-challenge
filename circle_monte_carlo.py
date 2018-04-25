@@ -2,6 +2,7 @@ import random
 
 
 def monte_carlo_pi_search(trials=10000000):
+    '''Calculates pi by randomly dropping points in a circle.'''
     amount_in_circle = 0
     for _ in range(trials):
         x, y = random.uniform(-1, 1), random.uniform(-1, 1)

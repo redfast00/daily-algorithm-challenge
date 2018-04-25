@@ -1,5 +1,7 @@
 def min_rooms_required(intervals):
     '''Returns the minimum amount of rooms necessary.
+
+    Input consists of a list of time-intervals (start, stop):
     >>> min_rooms_required([(10, 20), (15, 25)])
     2
     >>> min_rooms_required([(10, 20), (20, 30)])
