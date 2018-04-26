@@ -10,11 +10,10 @@ def color_matrix(matrix, k):
     >>> color_matrix([[1, 1], [1, 1]], 2)
     True
     '''
-    return backtrack(matrix, k, [])
+    return backtrack(matrix, k, [None] * len(matrix), 0)
 
 
-def backtrack(matrix, k, coloring):
-    current = len(coloring)
+def backtrack(matrix, k, coloring, current):
     if current == len(matrix):
         return True
     for candidate in range(k):
@@ -23,7 +22,8 @@ def backtrack(matrix, k, coloring):
                 break
         else:
             # Found a color, add current color to the coloring
-            result = backtrack(matrix, k, coloring + [candidate])
+            coloring[current] = candidate
+            result = backtrack(matrix, k, coloring, current + 1)
             if result:
                 return True
     return False
