@@ -9,11 +9,14 @@ def merge_sorted_linked_lists(*nodes):
     >>> merge_sorted_linked_lists(first, second).to_list()
     [1, 2, 2, 3, 3, 5, 5, 6, 7, 8, 10]
     '''
+    # Added idx to have an additional sorting parameter to prevent
+    #  nodes from linked lists getting compared
     priority_queue = [(node.value, idx, node) for idx, node in enumerate(nodes)]
     heapq.heapify(priority_queue)
 
     first = get_first_and_update(priority_queue)
     current = first
+
     while priority_queue:
         node = get_first_and_update(priority_queue)
         current.next = node
