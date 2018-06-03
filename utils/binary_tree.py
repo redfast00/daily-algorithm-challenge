@@ -44,3 +44,6 @@ class Node(object):
 
     def __eq__(self, other):
         return self.value == other.value and self.left == other.left and self.right == other.right
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__} ({self.value})>)'
