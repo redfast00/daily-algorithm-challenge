@@ -24,23 +24,44 @@ class Node(object):
             result.set_right(cls.from_list(lst[2]))
         return result
 
+    @classmethod
+    def from_list_representation(cls, lst, current=0):
+        '''Returns a binary tree made from the list representation of itself.
+
+        Suppose list indexes start from 1, then every node has it children at
+        2 * index and at 2 * index + 1.
+        >>> (Node.from_list([1, None, [2, [3], [4]]])
+        ...  == Node.from_list_representation([1, None, 2, None, None, 3, 4]))
+        True
+        '''
+        if current not in range(len(lst)) or lst[current] is None:
+            return None
+        result = cls(lst[current])
+        result.set_left(cls.from_list_representation(lst, current=2*current+1))
+        result.set_right(cls.from_list_representation(lst, current=2*current+2))
+        return result
+
     def set_left(self, child):
+        if self.left is not None:
+            self.left.parent = None
         self.left = child
-        child.parent = self
+        if child is not None:
+            child.parent = self
         return self
 
     def set_right(self, child):
+        if self.right is not None:
+            self.right.parent = None
         self.right = child
-        child.parent = self
+        if child is not None:
+            child.parent = self
         return self
 
     def remove_left(self):
-        del self.left
-        self.left = None
+        self.set_left(None)
 
     def remove_right(self):
-        del self.right
-        self.right = None
+        self.set_right(None)
 
     def __eq__(self, other):
         return self.value == other.value and self.left == other.left and self.right == other.right
