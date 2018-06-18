@@ -1,5 +1,4 @@
 import collections
-from utils.linked_list import Node
 
 
 class NodeQueue(collections.deque):
@@ -13,6 +12,7 @@ class NodeQueue(collections.deque):
 def remove_kth_last_element(linked_list, k):
     '''Removes the k-th last node from a linked list by only iterating over it once.
 
+    >>> from utils.linked_list import Node
     >>> linked_list = Node.from_list([1, 5, 8, 60, 82, 64])
     >>> remove_kth_last_element(linked_list, 3).to_list()
     [1, 5, 8, 82, 64]
@@ -25,7 +25,7 @@ def remove_kth_last_element(linked_list, k):
     >>> linked_list = Node.from_list([1, 2, 5, 8])
     >>> remove_kth_last_element(linked_list, 5).to_list()
     Traceback (most recent call last):
-    AssertionError: Linked list doesn't contain enough nodes
+    ValueError: Linked list doesn't contain enough nodes
     '''
 
     node_queue = NodeQueue(maxlen=k+1)
@@ -33,7 +33,8 @@ def remove_kth_last_element(linked_list, k):
     while this is not None:
         node_queue.append(this)
         this = this.next
-    assert len(node_queue) >= k, f"Linked list doesn't contain enough nodes"
+    if len(node_queue) < k:
+        raise ValueError("Linked list doesn't contain enough nodes")
     if len(node_queue) == k + 1:
         # Node before node that should be deleted
         keep_node = node_queue.popleft()

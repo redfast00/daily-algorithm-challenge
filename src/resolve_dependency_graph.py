@@ -11,11 +11,11 @@ def resolve_dependency_graph(dependency_graph):
     [1, 2, 3]
 
     If there is a cycle in the graph (i.e. an impossible dependency_graph),
-     an AssertionError will be thrown.
+     a ValueError will be thrown.
     >>> resolve_dependency_graph({3: [1, 2], 2: [1], 1: [3]})
     Traceback (most recent call last):
         ...
-    AssertionError: Cycle detected
+    ValueError: Cycle detected
     '''
     # This problem is equivalent to :
     #  - transposing a directed graph
@@ -45,5 +45,6 @@ def resolve_dependency_graph(dependency_graph):
         # Delete node from indegrees
         del indegrees[new]
     # Check if there is a cycle
-    assert len(indegrees) == 0, 'Cycle detected'
+    if len(indegrees) != 0:
+        raise ValueError('Cycle detected')
     return result
