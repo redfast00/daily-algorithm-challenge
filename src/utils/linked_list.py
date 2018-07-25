@@ -1,5 +1,5 @@
-class Node(object):
-    def __init__(self,  value):
+class Node:
+    def __init__(self, value):
         self.value = value
         self.next = None
 
@@ -18,7 +18,11 @@ class Node(object):
     def to_list(self):
         result = []
         this = self
+        seen = set()
         while this is not None:
+            if this in seen:
+                raise ValueError('Circular linked list detected')
+            seen.add(this)
             result.append(this.value)
             this = this.next
         return result
