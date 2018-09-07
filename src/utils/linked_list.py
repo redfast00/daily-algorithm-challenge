@@ -32,3 +32,11 @@ class Node:
 
     def __repr__(self):
         return f'{self.__class__.__name__}({self.value})'
+
+    def __len__(self):
+        this = self
+        amount = 0
+        while this is not None:
+            this = this.next
+            amount += 1
+        return amount
